@@ -4,6 +4,8 @@ const size = document.getElementById('number')
 const font = document.getElementById('font')
 const addText = document.getElementById('add-text')
 const area = document.getElementById('area')
+const dropzone = document.getElementById('drop')
+let newX = 0, newY = 0, startX = 0, startY = 0
 
 // function to change the color of text
 function changeColor() {
@@ -36,52 +38,22 @@ addText.addEventListener('click', function () {
     area.append(newText)
 })
 
-// to drag the text
-// function dragElement() {
-//     var pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0
-//     text.onmousedown = dragMouseDown
-
-
-//     function dragMouseDown(e) {
-//         e = e || window.Event
-//         e.preventDefault()
-//         pos3 = e.clientX
-//         pos4 = e.clientY
-//         document.onmouseup = closeDragElement
-//         document.onmouseover = elementDrag
-
-//     }
-
-//     function elementDrag(e) {
-//         e = e || window.Event
-//         e.preventDefault()
-//         pos1 = pos3 - e.clientX
-//         pos2 = pos4 - e.clientY
-//         pos3 = e.clientX
-//         pos4 = e.clientY
-
-//         text.style.top = text.offsetTop - pos2 + "px"
-//         text.style.left = text.offsetLeft - pos1 + "px"
-
-//     }
-//     function closeDragElement() {
-//         document.onmouseup = null
-//         document.onmouseover = null
-//     }
-// }
-// dragElement()
-
-function onMouseDrag({movementX,movementY}){
-   let getContainerStyle = window.getComputedStyle(area)
-   let leftvalue = parseInt(getContainerStyle.left)
-   let topvalue = parseInt(getContainerStyle.top)
-   area.style.left = `${leftvalue + movementX}px`
-   area.style.top = `${topvalue + movementY}px`
-
+area.addEventListener('dblclick', mouseDown)
+function mouseDown(e) {
+    startX = e.clientX
+    startY = e.clientY
+    document.addEventListener('mousemove', mouseMove)
+    document.addEventListener('mouseup', mouseUp)
 }
-area.addEventListener('mousedown',function(){
-    area.addEventListener('mousemove',onMouseDrag)
-})
-document.addEventListener('mouseup',function(){
-    area.removeEventListener('mousemove',onMouseDrag)
-})
+function mouseMove(e) {
+    newX = startX - e.clientX
+    newY = startY - e.clientY
+    startX = e.clientX
+    startY = e.clientY
+    area.style.top = (area.offsetTop - newY) + "px"
+    area.style.left = (area.offsetLeft - newX) + "px"
+}
+function mouseUp(e) {
+    document.removeEventListener('mousemove', mouseMove)
+}
+

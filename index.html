@@ -1,37 +1,45 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="index.css">
     <title>Text Canva</title>
 </head>
+
 <body>
-    <div id="area">
-        <textarea rows="10" cols="10" id="text" placeholder="Enter Text" draggable="true"></textarea>
+    <div class="canvas">
+        <div id="area" draggable="true">
+            <textarea rows="3" cols="12" id="text" placeholder="Enter Text" draggable="true"></textarea>
+        </div>
     </div>
-    <div>
-        <label for="font">FONT</label>
-        <select id="font">
-            <option>Arial</option>
-            <option>Verdana</option>
-            <option>Times New Roman</option>
-            <option>Georgia</option>
-            <option>Monaco</option>
-            <option>Copperplate</option>
-        </select>
+    <div class="change">
+        <div class="font-change">
+            <label for="font">FONT</label>
+            <select id="font">
+                <option>Arial</option>
+                <option>Verdana</option>
+                <option>Times New Roman</option>
+                <option>Georgia</option>
+                <option>Monaco</option>
+                <option>Copperplate</option>
+            </select>
+        </div>
+        <div class="font-size">
+            <label for="number">SIZE</label>
+            <input type="number" min="2" id="number">
+        </div>
+        <div class="font-color">
+            <label for="color">COLOR</label>
+            <input type="color" id="color">
+        </div>
+        <div class="btn">
+            <button type="button" id="add-text">ADD TEXT</button>
+        </div>
     </div>
-    <div>
-        <label for="number">SIZE</label>
-        <input type="number" min="2" id="number">
-    </div>
-    <div>
-        <label for="color">COLOR</label>
-        <input type="color" id="color">
-    </div>
-    <div>
-        <button type="button" id="add-text">ADD TEXT</button>
-    </div>
+
     <script src="index.js"></script>
 </body>
+
 </html>
